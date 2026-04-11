@@ -2,12 +2,12 @@ import time  #(16.03.2026)
 import random
 
 def Enter():  #(13.03.2026)
-    VN = "a8.2.0"
+    VN = "a8.2.1"
     global VipAccess, PassGuess, AdminAccess
     VipAccess = "F"
     Password = str(1041)
     PassGuess = 0
-    print("--- HubBase "+VN+" (default, Apr 11 2026, 18:16:51) ---")
+    print("--- HubBase "+VN+" (default, Apr 11 2026, 19:33:34) ---")
     while PassGuess != Password:
         Num = input("Number = ")
         Num2 = input("Number2 = ")
@@ -233,7 +233,7 @@ def Programm12():  #(24.03.2026)
     for Cyc5 in List1:
         print(Cyc5)
 
-def Programm13():
+def Programm13():  #(11.04.2026)
     print("Create a list with 2 elements and 2 keys")
     print("")
     El1 = input("Element 1 -- ")
@@ -348,6 +348,11 @@ def Code():
                                         pass
                                     else:
                                         Programm12()
+                                        CTNP()  #(11.04.2026)
+                                        if Stop == 1:
+                                            pass
+                                        else:
+                                            Programm13()
     else:
         pass
     print("")  #(16.03.2026)
