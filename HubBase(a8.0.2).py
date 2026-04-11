@@ -3,7 +3,7 @@ import random
 
 def Enter():  #(13.03.2026)
     VN = "a8.0.2"
-    global VipAccess, PassGuess, AdminAccess
+    global VipAccess, PassGuess
     VipAccess = "F"
     Password = str(1041)
     PassGuess = 0
@@ -16,11 +16,6 @@ def Enter():  #(13.03.2026)
             print("--Vip level access awarded--")
             print("Pass = 1041")
             VipAccess = "T"
-            PassGuess = str(1041)
-        if PassGuess == "A52-80A":
-            print("--Welcome, Mark--")
-            VipAccess = "T"
-            AdminAccess = "T"
             PassGuess = str(1041)
         if PassGuess != Password:
             print("Incorrect")
