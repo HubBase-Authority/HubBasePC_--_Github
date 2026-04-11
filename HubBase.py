@@ -2,12 +2,12 @@ import time  #(16.03.2026)
 import random
 
 def Enter():  #(13.03.2026)
-    VN = "a8.1.0"
+    VN = "a8.0.2"
     global VipAccess, PassGuess, AdminAccess
     VipAccess = "F"
     Password = str(1041)
     PassGuess = 0
-    print("--- HubBase "+VN+" (default, Apr 10 2026 ) ---")
+    print("--- HubBase "+VN+" (default, Apr 10 2026) ---")
     while PassGuess != Password:
         Num = input("Number = ")
         Num2 = input("Number2 = ")
@@ -232,9 +232,6 @@ def Programm12():  #(24.03.2026)
     print('')
     for Cyc5 in List1:
         print(Cyc5)
-
-def Programm13():
-    pass
 
 def CTNP():  #(15.03.2026)
     Cstate = input("Continue[Y/N]").upper()
