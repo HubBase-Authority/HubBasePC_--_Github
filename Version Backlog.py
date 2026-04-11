@@ -1,6 +1,6 @@
-print("--- Version Backlog a8-a8.2B (default, Apr 11 2026) ---")
-print("V`s available are a8.0.0 - a8.2.0B")
-print("For now a8, soon a-n and b-n")
+print("--- Version Backlog a8-a8.2.1 (default, Apr 11 2026) ---")
+print("V`s available are a8.0.0 - a8.2.1")
+print("Newest - a8, start - a8")
 D1 = input("The Main part -- ").lower()
 print("1,2,3 and so on")
 D2 = input("The addition -- ")
@@ -52,15 +52,23 @@ if D1 == "a8":
     elif D2 == "2":
         if D3 == "0":
             if D4 == "B":
-                print("--- HubBase a8.2.0B (default, Apr 11 2026 14:40:24) ---")
+                print("--- HubBase a8.2.0B (default, Apr 11 2026, 14:40:24) ---")
                 print("Addition №2!(not complete)")
                 print("Changes:")
                 print("    - Added 'Programm13()' as a launchable programm!")
             elif D4 == "R":
-                print("--- HubBase a8.2.0 (default, Apr 11 2026) ---")
+                print("--- HubBase a8.2.0 (default, Apr 11 2026, 18:16:51) ---")
                 print("Addition №2!")
                 print("Changes:")
                 print("    - Added 'Programm13()' fully")
+            else:
+                print("Such release does not exist or isn`t documented")
+        elif D3 == "1":
+            if D4 == "R":
+                print("--- HubBase a8.2.1 (default, Apr 11 2026, 19:33:34) ---")
+                print("Bugfix №3!")
+                print("Changes:")
+                print("    - Fixed 'Programm13()' not working for not Vip users")
             else:
                 print("Such release does not exist or isn`t documented")
         else:
