@@ -2,12 +2,12 @@ import time  #(16.03.2026)
 import random
 
 def Enter():  #(13.03.2026)
-    VN = "a8.1.0"
+    VN = "a8.2.0"
     global VipAccess, PassGuess, AdminAccess
     VipAccess = "F"
     Password = str(1041)
     PassGuess = 0
-    print("--- HubBase "+VN+" (default, Apr 10 2026 ) ---")
+    print("--- HubBase "+VN+" (default, Apr 11 2026, 18:16:51) ---")
     while PassGuess != Password:
         Num = input("Number = ")
         Num2 = input("Number2 = ")
@@ -234,7 +234,26 @@ def Programm12():  #(24.03.2026)
         print(Cyc5)
 
 def Programm13():
-    pass
+    print("Create a list with 2 elements and 2 keys")
+    print("")
+    El1 = input("Element 1 -- ")
+    El2 = input("Element 2 -- ")
+    Key1 = input("Key 1 -- ")
+    Key2 = input("Key 2 -- ")
+    print("")
+    print("The list will now change")
+    List1 = {Key1: El1, Key2: El2}
+    List1E = {Key1: El1, Key2: El2}
+    print(List1)
+    List1["Change?"] = "Change!"
+    print(List1)
+    del List1[Key1]
+    print(List1)
+    List1[Key2] = "Changeful!"
+    print(List1)
+    print('')
+    for Cyc6 in List1:
+        print(Cyc6)
 
 def CTNP():  #(15.03.2026)
     Cstate = input("Continue[Y/N]").upper()
