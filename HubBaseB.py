@@ -1,14 +1,15 @@
 import time  #(16.03.2026)
 import random
 from turtle import *
+import tkinter
 
 def Enter():  #(13.03.2026)
-    VN = "a9.0.0B"
+    VN = "a10.0.0B"
     global VipAccess, PassGuess, AdminAccess
     VipAccess = "F"
     Password = str(1041)
     PassGuess = 0
-    print("--- HubBase "+VN+" (default, Apr 12 2026, 21:17:18) ---")
+    print("--- HubBase "+VN+" (base - a9.1.2) (default, Apr 24 2026, 12:11:14) ---")
     while PassGuess != Password:
         Num = input("Number = ")
         Num2 = input("Number2 = ")
@@ -271,7 +272,7 @@ def Programm14():  #(12.04.2026)
             ES = ES + x
     print("The message is:", ES)
 
-def Programm15():
+def Programm15():  #(13.04.2026)
     color("blue")
     shape("turtle")
     speed(10)
@@ -281,6 +282,71 @@ def Programm15():
     for Cyc7 in range(NoA):
         forward(50)
         right(Angle)
+
+def Programm16():  #(15.04.2026)
+
+    def VShape(size):
+        right(25)
+        forward(size)
+        backward(size)
+        left(50)
+        forward(size)
+        backward(size)
+        right(25)
+
+    def SnowflakeArm(size):
+        for Cyc8 in  range(4):
+            forward(size)
+            VShape(size)
+        backward(size*4)
+
+    def Snowflake(size):
+        color(random.choice(colors))
+        for Cyc7 in range(NoA):
+            SnowflakeArm(size)
+            right(Angle)
+
+    colors = ["white","blue","cyan","purple","green","white","white"]
+    goto(0,0)
+    shape("turtle")
+    speed(10)
+    pensize(6)
+    Screen().bgcolor("turquoise")
+    clear()
+    NoA = int(input("How many arms do you want? -- "))
+    NoS = int(input("How many snowflakes do you want? -- "))
+    Angle = 360 / NoA
+    for Cyc9 in range(NoS):
+        size = random.randint(5,30)
+        x = random.randint(-400, 400)
+        y = random.randint(-400, 400)
+        penup()
+        goto(x,y)
+        pendown()
+        Snowflake(size)
+
+def Programm17():  #(24.04.2026)
+    window1 = tkinter.Tk()
+    button1 = tkinter.Button(window1, text="Do not press this button", width=40)
+    button1.pack(padx=10, pady=10)
+    global clicks1
+    clicks1 = 0
+
+    def onClick(event):
+        global clicks1
+        clicks1 = clicks1 + 1
+        if clicks1 == 1:
+            button1.configure(text="Seriously? Do. Not. Press. It.")
+        elif clicks1 == 2:
+            button1.configure(text="Gah! Next next time no-no-no more butt-utt-on-on")
+        elif clicks1 == 3:
+            time.sleep(1.0)
+            button1.configure(text="Opps. I said 'Next next time'")
+        else:
+            button1.pack_forget()
+
+    button1.bind("<ButtonRelease-1>", onClick)
+    window1.mainloop()
 
 def CTNP():  #(15.03.2026)
     Cstate = input("Continue[Y/N]").upper()
@@ -308,7 +374,10 @@ def PStop():  #(15.03.2026)
 
 #CodeBase
 def Code():
-    global Stop, VipAccess
+    global Stop, VipAccess, PlPr
+    PlPr = input("Do you want to enable PE programms?(requires HubBasePE => 0.0.1b2)[Y/N] -- ").upper()
+    if PlPr == "Y":
+        from HubBasePE import Main
     TAEstate = "N"  #(15.03.2026)
     EPstate = "N"
     if VipAccess == "T":
@@ -380,20 +449,37 @@ def Code():
                                             pass
                                         else:
                                             Programm13()
-                                            CTNP()  # (12.04.2026)
+                                            CTNP()  #(12.04.2026)
                                             if Stop == 1:
                                                 pass
                                             else:
                                                 Programm14()
-                                                CTNP()
+                                                CTNP()  #(15.04.2026)
                                                 if Stop == 1:
                                                     pass
                                                 else:
-                                                    Programm14()
+                                                    Programm15()
+                                                    CTNP()
+                                                    if Stop == 1:
+                                                        pass
+                                                    else:
+                                                        Programm16()
+                                                        CTNP()
+                                                        print("PE programms next! (If you chose N then they won`t load!)")
+                                                        if Stop == 1:
+                                                            pass
+                                                        else:
+                                                            if PlPr == "Y":
+                                                                Main.ProgrammP1()
+                                                                CTNP()  #(22.04.2026)
+                                                                if Stop == 1:
+                                                                    pass
+                                                                else:
+                                                                    Main.ProgrammP2()
     else:
         pass
     print("")  #(16.03.2026)
-    print("Stop!")  
+    print("Stop!")
     print("")
     print("------------------")
     print("Checking VipAccess")
@@ -412,18 +498,69 @@ def Code():
         Restart()
 
 def Restart():  #(16.03.2026)
+    global PlPr
+    if PlPr == "Y":
+        from HubBasePE import Main
     global E_C
     if VipAccess == "F":
         Code()
     else:
         Exit_Chioce = E_C = input("Do you want to exit the programm?[Y/N] -- ").upper()
         if E_C == "N":
-            PrStart = input("What programm to start at? -- ")
-            if PrStart == "14":
+            PrStart = input("What programm to launch? -- ")
+            if PrStart == "2":
+                Programm2()
+                Restart()
+            elif PrStart == "3":
+                Programm3()
+                Restart()
+            elif PrStart == "4":
+                Programm4()
+                Restart()
+            elif PrStart == "5":
+                Programm5()
+                Restart()
+            elif PrStart == "6":
+                Programm6()
+                Restart()
+            elif PrStart == "7":
+                Programm7()
+                Restart()
+            elif PrStart == "8":
+                Programm8()
+                Restart()
+            elif PrStart == "9":
+                Programm9()
+                Restart()
+            elif PrStart == "10":
+                Programm10()
+                Restart()
+            elif PrStart == "11":
+                Programm11()
+                Restart()
+            elif PrStart == "12":
+                Programm12()
+                Restart()
+            elif PrStart == "13":
+                Programm13()
+                Restart()
+            elif PrStart == "14":
                 Programm14()
                 Restart()
             elif PrStart == "15":
                 Programm15()
+                Restart()
+            elif PrStart == "16":
+                Programm16()
+                Restart()
+            elif PrStart == "17":
+                Programm17()
+                Restart()
+            elif PrStart == "P1":
+                Main.ProgrammP1()
+                Restart()
+            elif PrStart == "P2":
+                Main.ProgrammP2()
                 Restart()
             else:
                 Code()
