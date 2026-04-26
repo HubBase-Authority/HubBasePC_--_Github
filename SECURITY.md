@@ -9,4 +9,4 @@
 
 ## Reporting a Vulnerability
 
-Go to Issues, teplate "SWR" and wait for a response in the comments
+Go to Issues, template "SVR" and wait for a response in the comments
