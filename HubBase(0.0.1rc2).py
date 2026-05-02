@@ -471,6 +471,10 @@ def Programm19():  #(29.04.2026)
                     square.config(text= " "+str(totalBombs)+" ")
                     score += 1
                     squaresLeft -= 1
+                    if squaresLeft == 0:
+                        gameOver = True
+                        print("Well done!")
+                        print("Your score was:", score)
 
         def layout_minefield(window, minefield):
             global VipAccess
