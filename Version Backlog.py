@@ -559,12 +559,12 @@ elif LogVersion == "1.5":
     else:
         print("Such release does not exist or isn`t documented")
 elif LogVersion == "2":
-    print("True version number - v2.0.0.1")
+    print("True version number - v2.1.0.0")
     print("Log v2 loading!")
     time.sleep(3)
     print("Complete")
     time.sleep(0.5)
-    print("--- Version Backlog a8-0.0.1rc1 (default, May 01 2026) ---")
+    print("--- Version Backlog a8-0.0.1[Plan] (default, May 01 2026) ---")
     print("V`s available are 0.0.0.8 = a8(I`m lazy so use a(n)) - 0.0.1rc1")
     print("Exceptions:")
     print("a0.1.0, a0.1.1, a2.7.19")
@@ -574,6 +574,9 @@ elif LogVersion == "2":
     D2 = input("The addition -- ")
     print("0,1,2,3 and so on")
     D3 = input("The fix -- ")
+    if D1 == "0":
+        print("00, 01, ..., 10, and so on")
+        D5 = input("Extras(Doesn`t matter for 0.0.1<) -- ")
     print("a(n) - for alphas, b(n) - for betas, rc(n) - for prereleases, r - for releases")
     D4 = input("Access to Version -- ").lower()
     print("The security updates are exclusive to the wiki!")
@@ -845,10 +848,20 @@ elif LogVersion == "2":
                     print("Addition:")
                     print("    - Fixed 'Minesweeper'(Pr19)(Pt3)!")
                 elif D4 == "rc1":
-                    print("--- HubBase 0.0.1rc1 (default, May ?? 2026, ??:??:??) ---")
+                    print("--- HubBase 0.0.1rc1 (default, May 02 2026, 19:52:54) ---")
                     print("The first GIGANTIC update(not done!)!!")
                     print("Addition:")
-                    print("    - [Plan] Added 'Minesweeper'(Pr19)(Pt4)!")
+                    print("    - Added 'Minesweeper'(Pr19)(Pt4)!")
+                elif D4 == "rc2":
+                    print("--- HubBase 0.0.1rc2 (default, May 02 2026, ??:??:??) ---")
+                    print("The first GIGANTIC update(not done!)!!")
+                    print("Addition:")
+                    print("    - Fixed 'Minesweeper'(Pr19)(Pt4) CheckBombs bug!")
+                elif D4 == "rc3":
+                    print("--- HubBase 0.0.1rc3 (default, May 0? 2026, ??:??:??) ---")
+                    print("The first GIGANTIC update(not done!)!!")
+                    print("Addition:")
+                    print("    - [Plan] Fixed 'Minesweeper'(Pr19)(Pt4)!")
                 else:
                     print("Such release does not exist or isn`t documented")
             else:
