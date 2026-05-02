@@ -546,10 +546,20 @@ elif LogVersion == "1.5":
                     print("Addition:")
                     print("    - Fixed 'Minesweeper'(Pr19)(Pt3)!")
                 elif D4 == "rc1":
-                    print("--- HubBase 0.0.1rc1 (default, May ?? 2026, ??:??:??) ---")
+                    print("--- HubBase 0.0.1rc1 (default, May 02 2026, 19:52:54) ---")
                     print("The first GIGANTIC update(not done!)!!")
                     print("Addition:")
-                    print("    - [Plan] Added 'Minesweeper'(Pr19)(Pt4)!")
+                    print("    - Added 'Minesweeper'(Pr19)(Pt4)!")
+                elif D4 == "rc2":
+                    print("--- HubBase 0.0.1rc2 (default, May 02 2026, 21:04:43) ---")
+                    print("The first GIGANTIC update(not done!)!!")
+                    print("Addition:")
+                    print("    - Fixed 'Minesweeper'(Pr19)(Pt4) CheckBombs bug!")
+                elif D4 == "r":
+                    print("--- HubBase 0.0.1 (default, May 0? 2026, ??:??:??) ---")
+                    print("The first GIGANTIC update!!")
+                    print("Addition:")
+                    print("    - [Plan] Added 'Minesweeper'(Pr19) fully!")
                 else:
                     print("Such release does not exist or isn`t documented")
             else:
@@ -574,9 +584,8 @@ elif LogVersion == "2":
     D2 = input("The addition -- ")
     print("0,1,2,3 and so on")
     D3 = input("The fix -- ")
-    if D1 == "0":
-        print("00, 01, ..., 10, and so on")
-        D5 = input("Extras(Doesn`t matter for 0.0.1<) -- ")
+    print("00, 01, ..., 10, and so on")
+    D5 = input("Extras(Doesn`t matter for 0.0.1<) -- ")
     print("a(n) - for alphas, b(n) - for betas, rc(n) - for prereleases, r - for releases")
     D4 = input("Access to Version -- ").lower()
     print("The security updates are exclusive to the wiki!")
@@ -822,46 +831,49 @@ elif LogVersion == "2":
     elif D1 == "0":
         if D2 == "0":
             if D3 == "1":
-                if D4 == "b1":
-                    print("--- HubBase 0.0.1b1 (default, Apr 30 2026, 20:06:58) ---")
-                    print("The first GIGANTIC update(in beta)!!")
-                    print("Addition:")
-                    print("    - Added 'Minesweeper'(Pr19)(Pt1)!")
-                elif D4 == "b2":
-                    print("--- HubBase 0.0.1b2 (default, Apr 30 2026, 20:29:47) ---")
-                    print("The first GIGANTIC update(in beta)!!")
-                    print("Addition:")
-                    print("    - Added 'Minesweeper'(Pr19)(Pt2)!")
-                elif D4 == "b3":
-                    print("--- HubBase 0.0.1b3 (default, Apr 30 2026, 20:41:24) ---")
-                    print("The first GIGANTIC update(in beta)!!")
-                    print("Addition:")
-                    print("    - Added 'Minesweeper'(Pr19)(Pt3)!")
-                elif D4 == "b4":
-                    print("--- HubBase 0.0.1b4 (default, Apr 30 2026, 20:46:45) ---")
-                    print("The first GIGANTIC update(in beta)!!")
-                    print("Addition:")
-                    print("    - Fixed 'Minesweeper'(Pr19)(Pt2+3)!")
-                elif D4 == "b5":
-                    print("--- HubBase 0.0.1b5 (default, May 01 2026, 19:29:35) ---")
-                    print("The first GIGANTIC update(in beta)!!")
-                    print("Addition:")
-                    print("    - Fixed 'Minesweeper'(Pr19)(Pt3)!")
-                elif D4 == "rc1":
-                    print("--- HubBase 0.0.1rc1 (default, May 02 2026, 19:52:54) ---")
-                    print("The first GIGANTIC update(not done!)!!")
-                    print("Addition:")
-                    print("    - Added 'Minesweeper'(Pr19)(Pt4)!")
-                elif D4 == "rc2":
-                    print("--- HubBase 0.0.1rc2 (default, May 02 2026, ??:??:??) ---")
-                    print("The first GIGANTIC update(not done!)!!")
-                    print("Addition:")
-                    print("    - Fixed 'Minesweeper'(Pr19)(Pt4) CheckBombs bug!")
-                elif D4 == "rc3":
-                    print("--- HubBase 0.0.1rc3 (default, May 0? 2026, ??:??:??) ---")
-                    print("The first GIGANTIC update(not done!)!!")
-                    print("Addition:")
-                    print("    - [Plan] Fixed 'Minesweeper'(Pr19)(Pt4)!")
+                if D5 == "00":
+                    if D4 == "b1":
+                        print("--- HubBase 0.0.1b1 (default, Apr 30 2026, 20:06:58) ---")
+                        print("The first GIGANTIC update(in beta)!!")
+                        print("Addition:")
+                        print("    - Added 'Minesweeper'(Pr19)(Pt1)!")
+                    elif D4 == "b2":
+                        print("--- HubBase 0.0.1b2 (default, Apr 30 2026, 20:29:47) ---")
+                        print("The first GIGANTIC update(in beta)!!")
+                        print("Addition:")
+                        print("    - Added 'Minesweeper'(Pr19)(Pt2)!")
+                    elif D4 == "b3":
+                        print("--- HubBase 0.0.1b3 (default, Apr 30 2026, 20:41:24) ---")
+                        print("The first GIGANTIC update(in beta)!!")
+                        print("Addition:")
+                        print("    - Added 'Minesweeper'(Pr19)(Pt3)!")
+                    elif D4 == "b4":
+                        print("--- HubBase 0.0.1b4 (default, Apr 30 2026, 20:46:45) ---")
+                        print("The first GIGANTIC update(in beta)!!")
+                        print("Addition:")
+                        print("    - Fixed 'Minesweeper'(Pr19)(Pt2+3)!")
+                    elif D4 == "b5":
+                        print("--- HubBase 0.0.1b5 (default, May 01 2026, 19:29:35) ---")
+                        print("The first GIGANTIC update(in beta)!!")
+                        print("Addition:")
+                        print("    - Fixed 'Minesweeper'(Pr19)(Pt3)!")
+                    elif D4 == "rc1":
+                        print("--- HubBase 0.0.1rc1 (default, May 02 2026, 19:52:54) ---")
+                        print("The first GIGANTIC update(not done!)!!")
+                        print("Addition:")
+                        print("    - Added 'Minesweeper'(Pr19)(Pt4)!")
+                    elif D4 == "rc2":
+                        print("--- HubBase 0.0.1rc2 (default, May 02 2026, 21:04:43) ---")
+                        print("The first GIGANTIC update(not done!)!!")
+                        print("Addition:")
+                        print("    - Fixed 'Minesweeper'(Pr19)(Pt4) CheckBombs bug!")
+                    elif D4 == "r":
+                        print("--- HubBase 0.0.1 (default, May 0? 2026, ??:??:??) ---")
+                        print("The first GIGANTIC update!!")
+                        print("Addition:")
+                        print("    - [Plan] Added 'Minesweeper'(Pr19) fully!")
+                    else:
+                        print("Such release does not exist or isn`t documented")
                 else:
                     print("Such release does not exist or isn`t documented")
             else:
