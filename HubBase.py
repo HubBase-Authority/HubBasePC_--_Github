@@ -2,19 +2,21 @@ import time  # (16.03.2026)
 import random
 from turtle import *
 import tkinter as tkr
+from tkinter import messagebox
 import subprocess
 import sys
 
-__version__ = "0.0.2.0.05"
-__version2__ = "0.0.2.0.0.5"
-__parameters__ = "(default, June 11 2026, 22:00:10)"
-PlPr = "N"
+__version__ = "0.0.2.0.10"
+__version2__ = "0.0.2.0.1.0"
+__parameters__ = "(default, Aug 23 2026, 22:51:10)"
+PlPr = False
+RA = 0
+VipAccess = False
 
 
 def Enter():  # (13.03.2026)
-    global VipAccess, PassGuess, Login
+    global VipAccess
     Vips = ["voice659", "vhba", "vipuser", 'hbaofficial', "vvoice", "voice", "v", "vip1"]
-    VipAccess = "F"
     PassGuess = 0
     print(f"--- HubBase {__version__} {__parameters__} ---")
     Login = input("Login (If <vip level then press enter): ").lower()
@@ -24,74 +26,80 @@ def Enter():  # (13.03.2026)
             PassGuess = input("Password for " + Login + ": ")
             if PassGuess != Password:
                 print("Incorrect")
-        VipAccess = "T"
+        VipAccess = True
     if Login == "":
         Login = "usr"
     print("Login successful!")
-    if VipAccess == "T":
+    if VipAccess:
         PassGuess = str(5280)
 
 
-def ProgrammCycle(ProgrammNumber: int, programmList: dict, TransitionMethod, TransitionMethodargs: list):
+def ProgrammCycle(programmList: dict, TransitionMethod, TransitionMethodargs: list):
     for programm in range(1, ProgrammNumber + 1):
         print(f"Programm №{programm} launching")
         try:
             programmList[programm]()
-            TransitionMethod(*TransitionMethodargs)
+            success = TransitionMethod(*TransitionMethodargs)
+            if success:
+                continue
+            else:
+                print("Goodbye!")
+                sys.exit(0)
         except KeyError:
             print(f"KeyError: Key {programm} is out of reach")
             break
+        except Exception as e:
+            print(e)
+            break
 
 
-try:  # HBPE automator
-    from HubBasePE import Main
+if __name__ == '__main__':
+    try:  # HBPE automator
+        from HubBasePE import Main
 
-    try:
-        PE__version__ = Main.__version__
-        print(f"Your HubBase version: {__version__}, your HubBasePE version: {PE__version__}")
-        if PE__version__ > __version__:
-            print("Warning: You are using an outdated(to HubBasePE) version of HubBase. This may cause bugs.")
-        if PE__version__ < __version__:
+        try:
+            __versionPE__ = Main.__version__
+            print(f"Your HubBase version: {__version__}, your HubBasePE version: {__versionPE__}")
+            if __versionPE__ > __version__:
+                print("Warning: You are using an outdated(to HubBasePE) version of HubBase. This may cause bugs.")
+            if __versionPE__ < __version__:
+                print("Warning: HubBasePE is outdated")
+                print(f"Your HubBase version: {__version__}, your HubBasePE version: {__versionPE__}")
+                hbpeInstall = input("Do you want to upgrade HubBasePE?[Y/N] -- ").upper()
+                if hbpeInstall == "Y":
+                    subprocess.run([sys.executable, "-m", "pip", "install", f"HubBasePE=={__version2__}"])
+                    PlPr = True
+            if __versionPE__ == __version__:
+                print("All checks pass")
+        except AttributeError:
             print("Warning: HubBasePE is outdated")
-            print(f"Your HubBase version: {__version__}, your HubBasePE version: {PE__version__}")
+            print(f"Your HubBase version: {__version__}, your HubBasePE version: Unknown (< 0.0.2.0.04)")
             hbpeInstall = input("Do you want to upgrade HubBasePE?[Y/N] -- ").upper()
             if hbpeInstall == "Y":
                 subprocess.run([sys.executable, "-m", "pip", "install", f"HubBasePE=={__version2__}"])
-                PlPr = "Y"
-        if PE__version__ == __version__:
-            print("All checks pass")
-    except AttributeError:
-        print("Warning: HubBasePE is outdated")
-        print(f"Your HubBase version: {__version__}, your HubBasePE version: Unknown (< 0.0.2.0.04)")
-        hbpeInstall = input("Do you want to upgrade HubBasePE?[Y/N] -- ").upper()
+                PlPr = True
+    except ImportError:
+        print("Error: HubBasePE not installed.")
+        hbpeInstall = input("Do you want to install HubBasePE?[Y/N] -- ").upper()
         if hbpeInstall == "Y":
             subprocess.run([sys.executable, "-m", "pip", "install", f"HubBasePE=={__version2__}"])
-            PlPr = "Y"
-except ImportError:
-    print("Error: HubBasePE not installed.")
-    hbpeInstall = input("Do you want to install HubBasePE?[Y/N] -- ").upper()
-    if hbpeInstall == "Y":
-        subprocess.run([sys.executable, "-m", "pip", "install", f"HubBasePE=={__version2__}"])
-        PlPr = "Y"
+            PlPr = True
 
 
 def Setup_HubBase():  # (11.06.2026)
-    global RA, VipAccess, prList, prNum
-    RA = 0
     prList = {1: Programm1, 2: Programm2, 3: Programm3, 4: Programm4, 5: Programm5, 6: Programm6, 7: Programm7,
               8: Programm8, 9: Programm9, 10: Programm10, 11: Programm11, 12: Programm12, 13: Programm13,
               14: Programm14, 15: Programm15, 16: Programm16, 17: Programm17, 18: Programm18, 19: Programm19,
               20: Programm20}
-    prNum = 20
     try:
         prList = {1: Programm1, 2: Programm2, 3: Programm3, 4: Programm4, 5: Programm5, 6: Programm6, 7: Programm7,
                   8: Programm8, 9: Programm9, 10: Programm10, 11: Programm11, 12: Programm12, 13: Programm13,
                   14: Programm14, 15: Programm15, 16: Programm16, 17: Programm17, 18: Programm18, 19: Programm19,
                   20: Programm20, 21: Main.ProgrammP1, 22: Main.ProgrammP2, 23: Main.ProgrammP3, 24: Main.ProgrammP4,
                   25: Main.ProgrammP5}
-        prNum = 25
-    except:
+    except AttributeError:
         pass
+    return prList
 
 
 def Programm1():  # (15.03.2026)
@@ -145,9 +153,9 @@ def Programm5():  # (15.03.2026)
     elif User_reply == "N":
         print("Well, robots don't like you either")
         global VipAccess
-        if VipAccess == "T":
+        if VipAccess:
             print("--Vip level access taken--")
-        VipAccess = "F"
+        VipAccess = False
     elif User_reply == "M":
         print("Make up your mind, human")
     else:
@@ -205,14 +213,13 @@ def Programm7():  # (17.03.2026)
     print("------------------------------------------")
     print("            Checking VipAccess            ")
     print("------------------------------------------")
-    global VipAccess
     time.sleep(1)
-    if VipAccess == "T":
-        print("VipAccess = 'T'")
+    if VipAccess:
+        print("VipAccess = True")
         print("--Access granted--")
         print("Password =", APass)
     else:
-        print("VipAccess = 'F'")
+        print("VipAccess = False")
         APassGuess = input("Please enter the password -- ").upper()
         while APassGuess != APass:
             print("")
@@ -234,7 +241,7 @@ def Programm7():  # (17.03.2026)
 
 def Programm8():  # (18.03.2026)
     GNum = str(random.randint(1, 20))
-    if VipAccess == "T":
+    if VipAccess:
         GPstate = input("Learn correct answer(skips programm)[Y/N] -- ").upper()
         if GPstate != "Y":
             GGuess = input("Can you guess my number. It is inbetween 1 to 20 -- ")
@@ -530,7 +537,7 @@ def Programm19():  # (29.04.2026)
                     square.config(bg="red")
                     print("Game over! You hit a bomb!")
                     print("Your score was: ", score)
-                    if VipAccess == "T":
+                    if VipAccess:
                         if PFQ == "Y":
                             print("**Even with a cheat!!!**")
                     print("Your score was:", score)
@@ -591,7 +598,7 @@ def Programm19():  # (29.04.2026)
         global VipAccess, minefield, PFQ
         window3 = tkr.Tk()
         create_minefield(minefield, window3)
-        if VipAccess == "T":
+        if VipAccess:
             PFQ = input("Do you want a cheat?[Y/N] -- ").upper()
             if PFQ == "Y":
                 printfield(minefield)
@@ -648,7 +655,7 @@ def Programm20():
         if ballTop > canvasHeight:
             print("Your score was: ", str(score))
             PlayAgain = tkr.messagebox.askyesno(message="Play again?")
-            if PlayAgain == True:
+            if PlayAgain:
                 reset()
             else:
                 close()
@@ -718,41 +725,20 @@ def Programm20():
 
 
 def CTNP():  # (15.03.2026)
-    Cstate = input("Continue[Y/N] -- ").upper()
     if Cstate == "Y":
-        Cstate = 1
-    elif Cstate == "N":
-        Cstate = 0
+        return True
     else:
-        print("Choose properly!")
-        Cstate = 2
-    if Cstate == 1:
-        Advance()
-    else:
-        print("Bye")
-        PStop()
-
-
-def Advance():  # (15.03.2026)
-    Adv = 1
-    global Stop
-    Stop = 0
-
-
-def PStop():  # (15.03.2026)
-    global Stop
-    Stop = 1
+        return False
 
 
 # CodeBase
-def Code():
-    global Stop, VipAccess, prList, prNum
+def Code(prList: dict):
     TAEstate = "N"  # (15.03.2026)
     EPstate = "N"
-    if VipAccess == "T":
+    if VipAccess:
         TAEstate = input("Skip procedure[Y/N] -- ").upper()
     if TAEstate != "Y":
-        ProgrammCycle(prNum, prList, CTNP, [])
+        ProgrammCycle(prList, CTNP, [])
     else:
         pass
     print("")  # (16.03.2026)
@@ -763,201 +749,109 @@ def Code():
     print("------------------")
     print("")
     time.sleep(1.5)
-    if VipAccess == "T":
+    if VipAccess:
         print("VipAccess = 'T'")
-        Restart()
+        Restart(prList)
     else:
         print("VipAccess = 'F'")
         print("You shall not pass")
         global RA
-        RestartAttempt = RestAtt = RA = int(RA) + 1
+        RA = int(RA) + 1
         print("Restart №" + str(RA), "initializing")
-        Restart()
+        Restart(prList)
 
 
-def Restart():  # (16.03.2026)
-    global PlPr, RA
-    if PlPr == "Y":
+def Restart(prList: dict):  # (16.03.2026)
+    if PlPr:
         from HubBasePE import Main
     global E_C
-    if VipAccess == "F":
-        Code()
+    if not VipAccess:
+        Code(prList)
     else:
-        Exit_Chioce = E_C = input("Do you want to exit the programm?[Y/N] -- ").upper()
+        E_C = input("Do you want to exit the programm?[Y/N] -- ").upper()
         if E_C == "N":
             PrStart = input("What programm to launch? -- ")
             if PrStart == "2":
                 Programm2()
-                Restart()
+                Restart(prList)
             elif PrStart == "3":
                 Programm3()
-                Restart()
+                Restart(prList)
             elif PrStart == "4":
                 Programm4()
-                Restart()
+                Restart(prList)
             elif PrStart == "5":
                 Programm5()
-                Restart()
+                Restart(prList)
             elif PrStart == "6":
                 Programm6()
-                Restart()
+                Restart(prList)
             elif PrStart == "7":
                 Programm7()
-                Restart()
+                Restart(prList)
             elif PrStart == "8":
                 Programm8()
-                Restart()
+                Restart(prList)
             elif PrStart == "9":
                 Programm9()
-                Restart()
+                Restart(prList)
             elif PrStart == "10":
                 Programm10()
-                Restart()
+                Restart(prList)
             elif PrStart == "11":
                 Programm11()
-                Restart()
+                Restart(prList)
             elif PrStart == "12":
                 Programm12()
-                Restart()
+                Restart(prList)
             elif PrStart == "13":
                 Programm13()
-                Restart()
+                Restart(prList)
             elif PrStart == "14":
                 Programm14()
-                Restart()
+                Restart(prList)
             elif PrStart == "15":
                 Programm15()
-                Restart()
+                Restart(prList)
             elif PrStart == "16":
                 Programm16()
-                Restart()
+                Restart(prList)
             elif PrStart == "17":
                 Programm17()
-                Restart()
+                Restart(prList)
             elif PrStart == "18":
                 Programm18()
-                Restart()
+                Restart(prList)
             elif PrStart == "19":
                 Programm19()
-                Restart()
+                Restart(prList)
             elif PrStart == "20":
                 Programm20()
-                Restart()
+                Restart(prList)
             elif PrStart == "P1":
                 Main.ProgrammP1()
-                Restart()
+                Restart(prList)
             elif PrStart == "P2":
                 Main.ProgrammP2()
-                Restart()
+                Restart(prList)
             elif PrStart == "P3":
                 Main.ProgrammP3()
-                Restart()
+                Restart(prList)
             elif PrStart == "P4":
                 Main.ProgrammP4()
-                Restart()
+                Restart(prList)
             elif PrStart == "P5":
                 Main.ProgrammP5()
-                Restart()
+                Restart(prList)
             else:
-                Code()
+                Code(prList)
         else:
             pass
 
 
-def dev_console():
-    global RA, VipAccess, Login, VN
-    SpCm = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19",
-            "20", "p1", "p2", "p3", "p4", "p5"]
-    if VipAccess == "T":
-        print("Developer console for " + __version__)
-        line = ""
-        while line != "stop" and line != "close":
-            line = input(Login + " >>> ").lower()
-            if line in SpCm:
-                PrStart = line
-                if PrStart == "2":
-                    Programm2()
-                    Restart()
-                elif PrStart == "3":
-                    Programm3()
-                    Restart()
-                elif PrStart == "4":
-                    Programm4()
-                    Restart()
-                elif PrStart == "5":
-                    Programm5()
-                    Restart()
-                elif PrStart == "6":
-                    Programm6()
-                    Restart()
-                elif PrStart == "7":
-                    Programm7()
-                    Restart()
-                elif PrStart == "8":
-                    Programm8()
-                    Restart()
-                elif PrStart == "9":
-                    Programm9()
-                    Restart()
-                elif PrStart == "10":
-                    Programm10()
-                    Restart()
-                elif PrStart == "11":
-                    Programm11()
-                    Restart()
-                elif PrStart == "12":
-                    Programm12()
-                    Restart()
-                elif PrStart == "13":
-                    Programm13()
-                    Restart()
-                elif PrStart == "14":
-                    Programm14()
-                    Restart()
-                elif PrStart == "15":
-                    Programm15()
-                    Restart()
-                elif PrStart == "16":
-                    Programm16()
-                    Restart()
-                elif PrStart == "17":
-                    Programm17()
-                    Restart()
-                elif PrStart == "18":
-                    Programm18()
-                    Restart()
-                elif PrStart == "19":
-                    Programm19()
-                    Restart()
-                elif PrStart == "20":
-                    Programm19()
-                    Restart()
-                elif PrStart == "P1":
-                    Main.ProgrammP1()
-                    Restart()
-                elif PrStart == "P2":
-                    Main.ProgrammP2()
-                    Restart()
-                elif PrStart == "P3":
-                    Main.ProgrammP3()
-                    Restart()
-                elif PrStart == "P4":
-                    Main.ProgrammP4()
-                    Restart()
-                elif PrStart == "P5":
-                    Main.ProgrammP5()
-                    Restart()
-                else:
-                    Code()
-            elif line != "stop" and line != "close":
-                try:
-                    print(eval(line))
-                except SyntaxError:
-                    print("Error: The syntax is not correct.")
-
-
 # (16.03.2026)
-Setup_HubBase()
-Enter()
-Code()
-dev_console()
+if __name__ == '__main__':
+    pr_list = Setup_HubBase()
+    Enter()
+    Code(prList)
+    dev_console()
