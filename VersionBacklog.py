@@ -977,6 +977,14 @@ elif LogVersion == "2":
                         print("    - Added 'ProgrammCycle()' to optimise Code()")
                     else:
                         print("Such release does not exist or isn`t documented")
+                elif D5 == "0.10":
+                    if D4 == "r":
+                        print("--- HubBase 0.0.2.0.10 (default, Aug 23 2026, 22:51:10) ---")
+                        print("Addition №8!")
+                        print("Changes:")
+                        print("    - Added importability")
+                    else:
+                        print("Such release does not exist or isn`t documented")
                 else:
                     print("Such release does not exist or isn`t documented")
             else:
