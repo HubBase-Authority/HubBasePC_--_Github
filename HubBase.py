@@ -5,101 +5,108 @@ import tkinter as tkr
 from tkinter import messagebox
 import subprocess
 import sys
+import importlib
+import inspect
 
-__version__ = "0.0.2.0.10"
-__version2__ = "0.0.2.0.1.0"
-__parameters__ = "(default, Aug 23 2026, 22:51:10)"
+__version__ = "0.0.2.0.11"
+__version2__ = "0.0.2.0.1.1"
+__parameters__ = "(default, Aug 24 2026, 12:47:51)"
+
 PlPr = False
 RA = 0
+progs = 20
 VipAccess = False
 
 
+class User:
+    def __init__(self, login: str):
+        self.VipAccess = False
+        self.username = login
+
+    def log_in(self):
+        self.VipAccess = input("VIP password -- ") == "5280"
+        if not self.VipAccess:
+            print("Incorrect.")
+        else:
+            print("Correct.")
+        global VipAccess
+        VipAccess = self.VipAccess
+
+
 def Enter():  # (13.03.2026)
-    global VipAccess
-    Vips = ["voice659", "vhba", "vipuser", 'hbaofficial', "vvoice", "voice", "v", "vip1"]
-    PassGuess = 0
     print(f"--- HubBase {__version__} {__parameters__} ---")
-    Login = input("Login (If <vip level then press enter): ").lower()
-    if Login in Vips:
-        Password = str(5280)
-        while PassGuess != Password:
-            PassGuess = input("Password for " + Login + ": ")
-            if PassGuess != Password:
-                print("Incorrect")
-        VipAccess = True
-    if Login == "":
-        Login = "usr"
-    print("Login successful!")
-    if VipAccess:
-        PassGuess = str(5280)
+    User_obj = User(input("Login: ").lower())
+    User_obj.log_in()
+    return User_obj
 
 
-def ProgrammCycle(programmList: dict, TransitionMethod, TransitionMethodargs: list):
-    for programm in range(1, ProgrammNumber + 1):
-        print(f"Programm №{programm} launching")
+def ProgramCycle(programmList: dict, TransitionMethod, TransitionMethodargs: list):
+    try:
+        automate_deps("HubBaseUtility")["HubBaseUtility"].ProgramCycle(programmList, TransitionMethod, TransitionMethodargs)
+    except (ImportError, AttributeError):
+        for programm in range(1, 1000000000000000):
+            print(f"Programm №{programm} launching")
+            try:
+                programmList[programm]()
+                success = TransitionMethod(*TransitionMethodargs)
+                if success:
+                    continue
+                else:
+                    break
+            except KeyError:
+                break
+            except Exception as e:
+                print(e)
+                break
+
+
+def automate_deps(which: str | list[str] = "_all"):
+    global PlPr
+    modules = {}
+    not_installed = []
+    if which == "_all":
+        deps = ["HubBasePE", "HubBaseUtility"]
+    elif isinstance(which, list):
+        deps = which
+    else:
+        deps = [which]
+    for dep in deps:
         try:
-            programmList[programm]()
-            success = TransitionMethod(*TransitionMethodargs)
-            if success:
-                continue
-            else:
-                print("Goodbye!")
-                sys.exit(0)
-        except KeyError:
-            print(f"KeyError: Key {programm} is out of reach")
-            break
-        except Exception as e:
-            print(e)
-            break
+            modules[dep] = importlib.import_module(dep + ".Main")
+        except ImportError:
+            not_installed.append(dep)
+    if not_installed:
+        print(f"Error: module{'s' if len(not_installed) > 1 else ''} {', '.join(not_installed)} not installed")
+        install_prompt = input("Install them?[Y/N] -- ").upper()
+        if install_prompt == "Y":
+            try:
+                _ = subprocess.run([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"], check=True,
+                                   capture_output=True)
+                print("Modules installed.")
+                modules = automate_deps()
+            except subprocess.CalledProcessError:
+                print("Install failed.")
+                sys.exit(1)
+    return modules
 
 
-if __name__ == '__main__':
-    try:  # HBPE automator
-        from HubBasePE import Main
-
-        try:
-            __versionPE__ = Main.__version__
-            print(f"Your HubBase version: {__version__}, your HubBasePE version: {__versionPE__}")
-            if __versionPE__ > __version__:
-                print("Warning: You are using an outdated(to HubBasePE) version of HubBase. This may cause bugs.")
-            if __versionPE__ < __version__:
-                print("Warning: HubBasePE is outdated")
-                print(f"Your HubBase version: {__version__}, your HubBasePE version: {__versionPE__}")
-                hbpeInstall = input("Do you want to upgrade HubBasePE?[Y/N] -- ").upper()
-                if hbpeInstall == "Y":
-                    subprocess.run([sys.executable, "-m", "pip", "install", f"HubBasePE=={__version2__}"])
-                    PlPr = True
-            if __versionPE__ == __version__:
-                print("All checks pass")
-        except AttributeError:
-            print("Warning: HubBasePE is outdated")
-            print(f"Your HubBase version: {__version__}, your HubBasePE version: Unknown (< 0.0.2.0.04)")
-            hbpeInstall = input("Do you want to upgrade HubBasePE?[Y/N] -- ").upper()
-            if hbpeInstall == "Y":
-                subprocess.run([sys.executable, "-m", "pip", "install", f"HubBasePE=={__version2__}"])
-                PlPr = True
-    except ImportError:
-        print("Error: HubBasePE not installed.")
-        hbpeInstall = input("Do you want to install HubBasePE?[Y/N] -- ").upper()
-        if hbpeInstall == "Y":
-            subprocess.run([sys.executable, "-m", "pip", "install", f"HubBasePE=={__version2__}"])
-            PlPr = True
+def extend_prList(prList: dict[int, object], modules: dict[str, object]):
+    for module in modules.values():
+        modulefuncs = inspect.getmembers(module, predicate=inspect.isfunction)
+        for func_name, func_obj in modulefuncs:
+            if "Programm" in func_name:
+                prList[len(prList) + 1] = func_obj
+    return prList
 
 
 def Setup_HubBase():  # (11.06.2026)
-    prList = {1: Programm1, 2: Programm2, 3: Programm3, 4: Programm4, 5: Programm5, 6: Programm6, 7: Programm7,
-              8: Programm8, 9: Programm9, 10: Programm10, 11: Programm11, 12: Programm12, 13: Programm13,
-              14: Programm14, 15: Programm15, 16: Programm16, 17: Programm17, 18: Programm18, 19: Programm19,
-              20: Programm20}
-    try:
-        prList = {1: Programm1, 2: Programm2, 3: Programm3, 4: Programm4, 5: Programm5, 6: Programm6, 7: Programm7,
-                  8: Programm8, 9: Programm9, 10: Programm10, 11: Programm11, 12: Programm12, 13: Programm13,
-                  14: Programm14, 15: Programm15, 16: Programm16, 17: Programm17, 18: Programm18, 19: Programm19,
-                  20: Programm20, 21: Main.ProgrammP1, 22: Main.ProgrammP2, 23: Main.ProgrammP3, 24: Main.ProgrammP4,
-                  25: Main.ProgrammP5}
-    except AttributeError:
-        pass
-    return prList
+    modules = automate_deps()
+    prList = extend_prList(
+        {1: Programm1, 2: Programm2, 3: Programm3, 4: Programm4, 5: Programm5, 6: Programm6, 7: Programm7,
+         8: Programm8, 9: Programm9, 10: Programm10, 11: Programm11, 12: Programm12, 13: Programm13,
+         14: Programm14, 15: Programm15, 16: Programm16, 17: Programm17, 18: Programm18, 19: Programm19,
+         20: Programm20}, modules)
+    return prList, modules
 
 
 def Programm1():  # (15.03.2026)
@@ -725,6 +732,7 @@ def Programm20():
 
 
 def CTNP():  # (15.03.2026)
+    Cstate = input("Continue?[Y/N] -- ").upper()
     if Cstate == "Y":
         return True
     else:
@@ -732,126 +740,50 @@ def CTNP():  # (15.03.2026)
 
 
 # CodeBase
-def Code(prList: dict):
+def Code(prList: dict, User: User):
     TAEstate = "N"  # (15.03.2026)
-    EPstate = "N"
-    if VipAccess:
+    if User.VipAccess:
         TAEstate = input("Skip procedure[Y/N] -- ").upper()
     if TAEstate != "Y":
-        ProgrammCycle(prList, CTNP, [])
+        ProgramCycle(prList, CTNP, [])
     else:
         pass
     print("")  # (16.03.2026)
-    print("Stop!")
-    print("")
     print("------------------")
     print("Checking VipAccess")
     print("------------------")
     print("")
     time.sleep(1.5)
-    if VipAccess:
+    if User.VipAccess:
         print("VipAccess = 'T'")
-        Restart(prList)
+        Restart(prList, User)
     else:
         print("VipAccess = 'F'")
-        print("You shall not pass")
-        global RA
-        RA = int(RA) + 1
-        print("Restart №" + str(RA), "initializing")
-        Restart(prList)
+        print("Goodbye!")
+        sys.exit(0)
 
 
-def Restart(prList: dict):  # (16.03.2026)
-    if PlPr:
-        from HubBasePE import Main
-    global E_C
-    if not VipAccess:
-        Code(prList)
+def Restart(prList: dict, User: User):  # (16.03.2026)
+    if not User.VipAccess:
+        Code(prList, User)
     else:
         E_C = input("Do you want to exit the programm?[Y/N] -- ").upper()
         if E_C == "N":
             PrStart = input("What programm to launch? -- ")
-            if PrStart == "2":
-                Programm2()
-                Restart(prList)
-            elif PrStart == "3":
-                Programm3()
-                Restart(prList)
-            elif PrStart == "4":
-                Programm4()
-                Restart(prList)
-            elif PrStart == "5":
-                Programm5()
-                Restart(prList)
-            elif PrStart == "6":
-                Programm6()
-                Restart(prList)
-            elif PrStart == "7":
-                Programm7()
-                Restart(prList)
-            elif PrStart == "8":
-                Programm8()
-                Restart(prList)
-            elif PrStart == "9":
-                Programm9()
-                Restart(prList)
-            elif PrStart == "10":
-                Programm10()
-                Restart(prList)
-            elif PrStart == "11":
-                Programm11()
-                Restart(prList)
-            elif PrStart == "12":
-                Programm12()
-                Restart(prList)
-            elif PrStart == "13":
-                Programm13()
-                Restart(prList)
-            elif PrStart == "14":
-                Programm14()
-                Restart(prList)
-            elif PrStart == "15":
-                Programm15()
-                Restart(prList)
-            elif PrStart == "16":
-                Programm16()
-                Restart(prList)
-            elif PrStart == "17":
-                Programm17()
-                Restart(prList)
-            elif PrStart == "18":
-                Programm18()
-                Restart(prList)
-            elif PrStart == "19":
-                Programm19()
-                Restart(prList)
-            elif PrStart == "20":
-                Programm20()
-                Restart(prList)
-            elif PrStart == "P1":
-                Main.ProgrammP1()
-                Restart(prList)
-            elif PrStart == "P2":
-                Main.ProgrammP2()
-                Restart(prList)
-            elif PrStart == "P3":
-                Main.ProgrammP3()
-                Restart(prList)
-            elif PrStart == "P4":
-                Main.ProgrammP4()
-                Restart(prList)
-            elif PrStart == "P5":
-                Main.ProgrammP5()
-                Restart(prList)
-            else:
-                Code(prList)
+            if "P" in PrStart:
+                PrStart = int(PrStart.replace("P", "")) + progs
+            try:
+                prList[PrStart]()
+                Restart(prList, User)
+            except KeyError:
+                print(f"Programm {PrStart} does not exist")
+                sys.exit(1)
         else:
             pass
 
 
 # (16.03.2026)
 if __name__ == '__main__':
-    pr_list = Setup_HubBase()
-    Enter()
-    Code(prList)
-    dev_console()
+    prList, modules = Setup_HubBase()
+    User = Enter()
+    Code(prList, User)

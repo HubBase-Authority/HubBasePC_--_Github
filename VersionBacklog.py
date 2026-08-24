@@ -985,6 +985,15 @@ elif LogVersion == "2":
                         print("    - Added importability")
                     else:
                         print("Such release does not exist or isn`t documented")
+                elif D5 == "0.11":
+                    if D4 == "r":
+                        print("--- HubBase 0.0.2.0.11 (default, Aug 24 2026, 12:47:51) ---")
+                        print("Bugfix №16!")
+                        print("Changes:")
+                        print("    - Added 'Auto HubBasePE 3.0' or 'Auto-deps'")
+                        print("    - Fixed ProgramCycle")
+                    else:
+                        print("Such release does not exist or isn`t documented")
                 else:
                     print("Such release does not exist or isn`t documented")
             else:
