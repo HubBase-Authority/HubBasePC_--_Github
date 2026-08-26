@@ -93,10 +93,18 @@ def view_log():
     searchfor = f"{D1}.{D2}.{D3}.{D4}{D5}"
     for version in versions:
         if version.str_to_list(version.version, reverse=True) == searchfor:
-            print(f"=== HubBase v{version} === \n{version.getfeatures(True)}")
+            print(f"=== HubBase v{version} {version.params} === \n{version.getfeatures(True)}")
             break
     else:
         print(f"Version {searchfor} does not exist, or is not documented.")
+
+
+def find_version_info(D1, D2, D3, D4, D5):
+    searchfor = f"{D1}.{D2}.{D3}.{D4}{D5}"
+    for version in versions:
+        if version.str_to_list(version.version, reverse=True) == searchfor:
+            return f"=== HubBase v{version} {version.params} === "
+    raise NotImplementedError(f"Version {searchfor} does not exist, or is not documented.")
 
 
 if __name__ == '__main__':
