@@ -1,0 +1,12 @@
+def run():
+    Num = input("Number = ")
+    Num2 = input("Number2 = ")
+    num = int(Num)
+    num2 = int(Num2)
+    print(num + num2)
+    print(num - num2)
+    print(num * num2)
+    print(num ** num2)
+    print(num / num2)
+    print(num // num2)
+    print(num % num2)

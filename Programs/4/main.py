@@ -1,0 +1,12 @@
+def run():
+    Uname = input("What is your name? -- ")
+    print("Create a character")
+    Cname = input("What is his name? -- ")
+    Cage = input("What is his age? -- ")
+    Cpower = input("What are his powers? -- ")
+    Cweak = input("What are his weaknesses? -- ")
+    print("His name is", Cname)
+    print("He is", Cage, "years old")
+    print("Powers:", Cpower)
+    print("Weaknesses:", Cweak)
+    print('"' + "Thanks for creating me,", Uname + '"', "- says", Cname)
