@@ -1,0 +1,179 @@
+{
+  "0.0.1.0.00b1": {
+    "params": "(default, Apr 30 2026, 20:06:58)",
+    "features": [
+      "The first GIGANTIC update!!(in beta)",
+      "Added 'Minesweeper'(Pr19)(Pt1)!"
+    ]
+  },
+  "0.0.1.0.00b2": {
+    "params": "(default, Apr 30 2026, 20:29:47)",
+    "features": [
+      "The first GIGANTIC update(in beta)!!",
+      "Added 'Minesweeper'(Pr19)(Pt2)!"
+    ]
+  },
+  "0.0.1.0.00b3": {
+    "params": "(default, Apr 30 2026, 20:41:24)",
+    "features": [
+      "The first GIGANTIC update(in beta)!!",
+      "Added 'Minesweeper'(Pr19)(Pt3.1)!"
+    ]
+  },
+  "0.0.1.0.00b4": {
+    "params": "(default, Apr 30 2026, 20:46:45)",
+    "features": [
+      "The first GIGANTIC update(in beta)!!",
+      "Fixed 'Minesweeper'(Pr19)(Pt2+3.1)!"
+    ]
+  },
+  "0.0.1.0.00b5": {
+    "params": "(default, May 01 2026, 19:29:35)",
+    "features": [
+      "The first GIGANTIC update(in beta)!!",
+      "Fixed 'Minesweeper'(Pr19)(Pt3)!"
+    ]
+  },
+  "0.0.1.0.00rc1": {
+    "params": "(default, May 02 2026, 19:52:54)",
+    "features": [
+      "The first GIGANTIC update(not done!)!!",
+      "Added 'Minesweeper'(Pr19)(Pt4)!"
+    ]
+  },
+  "0.0.1.0.00rc2": {
+    "params": "(default, May 02 2026, 21:04:43)",
+    "features": [
+      "The first GIGANTIC update(not done!)!!",
+      "Fixed 'Minesweeper'(Pr19)(Pt4) CheckBombs bug!"
+    ]
+  },
+  "0.0.1.0.00": {
+    "params": "(default, May 10 2026, 19:37:54)",
+    "features": [
+      "The first GIGANTIC update!!",
+      "Added 'Minesweeper'(Pr19) fully!",
+      "Added HubBasePE v0.0.1 support!"
+    ]
+  },
+  "0.0.1.0.10": {
+    "params": "(default, May 13 2026, 20:19:52)",
+    "features": [
+      "Addition №5!",
+      "Added HubBasePE v0.0.1.0.10 support!"
+    ]
+  },
+  "0.0.1.1.00": {
+    "params": "(default, May 23 2026, 22:06:12)",
+    "features": [
+      "Addition №6!",
+      "Added advanced login system!"
+    ]
+  },
+  "0.0.1.2.00": {
+    "params": "(default, May 24 2026, 12:56:45)",
+    "features": [
+      "Addition №7!",
+      "Added dev console!"
+    ]
+  },
+  "0.0.1.2.01": {
+    "params": "(default, May 24 2026, 14:03:54)",
+    "features": [
+      "Bugfix №10!",
+      "Fixed dev console!"
+    ]
+  },
+  "0.0.2.0.00b1": {
+    "params": "(default, May 24 2026, 22:03:41)",
+    "features": [
+      "The second GIGANTIC update(in beta)!!",
+      "Added 'Tennis'(Pr20)(Pt1)!"
+    ]
+  },
+  "0.0.2.0.00b2": {
+    "params": "(default, May 25 2026, 21:06:54)",
+    "features": [
+      "The second GIGANTIC update(in beta)!!",
+      "Added 'Tennis'(Pr20)(Pt2)!"
+    ]
+  },
+  "0.0.2.0.00rc1": {
+    "params": "(default, May 27 2026, 21:24:41)",
+    "features": [
+      "The second GIGANTIC update(not done)!!",
+      "Added 'Tennis'(Pr20)(Pt3)!"
+    ]
+  },
+  "0.0.2.0.00": {
+    "params": "(default, May 29 2026, 21:24:41)",
+    "features": [
+      "The second GIGANTIC update!!",
+      "Added 'Tennis'(Pr20)(Extentions)!"
+    ]
+  },
+  "0.0.2.0.01": {
+    "params": "(default, May 29 2026, 13:30:11)",
+    "features": [
+      "Bugfix №11!",
+      "Fixed ball faze!"
+    ]
+  },
+  "0.0.2.0.02": {
+    "params": "(default, May 31 2026, 15:06:54)",
+    "features": [
+      "Bugfix №12!",
+      "Fixed 'Programm20()' funky ball bug",
+      "Fixed other fake info stuff"
+    ]
+  },
+  "0.0.2.0.03": {
+    "params": "(default, June 09 2026, 17:16:14)",
+    "features": [
+      "Bugfix №13!",
+      "Added 'Auto HubBasePE' and dev_console 'Syntax check'"
+    ]
+  },
+  "0.0.2.0.04": {
+    "params": "(default, June 10 2026, 17:35:54)",
+    "features": [
+      "Bugfix №14!",
+      "Added 'Auto HubBasePE 2.0' and changed versioning(__version__)"
+    ]
+  },
+  "0.0.2.0.05": {
+    "params": "(default, June 11 2026, 22:00:10)",
+    "features": [
+      "Bugfix №15!",
+      "Added 'ProgrammCycle()' to optimise Code()"
+    ]
+  },
+  "0.0.2.0.10": {
+    "params": "(default, Aug 23 2026, 22:51:10)",
+    "features": [
+      "Addition №8!",
+      "Added importability"
+    ]
+  },
+  "0.0.2.0.11": {
+    "params": "(default, Aug 24 2026, 12:47:51)",
+    "features": [
+      "Bugfix №16!",
+      "Added 'Auto HubBasePE 3.0' or 'Auto-deps'",
+      "Fixed ProgramCycle"
+    ]
+  },
+  "0.0.2.1.00": {
+    "params": "(default, Aug 24 2026, 16:59:45)",
+    "features": [
+      "Addition №9!",
+      "Added Programm21: TicTacToe"
+    ]
+  },
+  "0.0.3.0.00a1": {
+    "params": "(default, Aug 25 2026, 18:49:33)",
+    "features": [
+      "Full rewrite of HubBase."
+    ]
+  }
+}
