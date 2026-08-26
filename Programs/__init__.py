@@ -40,7 +40,8 @@ for module in load_deps():
     try:
         for item in module_obj.all_programs:
             if item.is_dir() and item.name != "__pycache__" and Path(item / "main.py").exists():
-                item.copy(programs_dir)
+                if item.name not in all_programsl:
+                    item.copy(programs_dir)
                 all_programsl.append(item.name)
     except AttributeError:
         print(f"AttributeError: module '{module}' has no attribute 'all_programs' therefore it is outdated")
