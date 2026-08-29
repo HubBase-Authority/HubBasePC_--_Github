@@ -1,7 +1,8 @@
 import time
 
 
-def run():
+def run(user):
+    VipAccess = user.VipAccess
     aliens = 2
     APass = "ALIENS"
     print("Aliens are invading the earth!")

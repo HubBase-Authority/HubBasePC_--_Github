@@ -1,5 +1,6 @@
-import importlib, sys
+import importlib, sys, inspect
 from pathlib import Path
+from ..Database import User
 
 
 def print_ImportError(error: BaseException, module_name: str, message: str | None=None):
@@ -20,7 +21,7 @@ class Program:
         if not self.path.exists():
             raise FileNotFoundError(f"[HubBase Engine] Programs.{self.id}.main not found")
 
-    def load(self):
+    def load(self, user: User):
         module_name = f"Programs.{self.id}.main"
         md_module_name = f"Programs.{self.id}"
         metadata = None
@@ -31,16 +32,19 @@ class Program:
                 metadata = md_module.ProgramInfo
             except (AttributeError, ImportError):
                 metadata = None
-            return module.run, [], metadata
+            args = []
+            if "user" in inspect.signature(module.run).parameters.keys():
+                args.append(user)
+            return module.run, args, metadata
         except ImportError as e:
             return print_ImportError, [e, module_name], metadata
         except AttributeError as e:
             return print_ImportError, [e, module_name, f"[HubBase Engine] {module_name} doesn`t have a `run()` method. "], metadata
 
-    def run(self):
+    def run(self, user: User):
         metadata = None
         try:
-            to_run, args, metadata = self.load()
+            to_run, args, metadata = self.load(user)
             print(f"[HubBase Engine] Launching program №{self.id} - {metadata["Name"]}")
             to_run(*args)
             return True, metadata

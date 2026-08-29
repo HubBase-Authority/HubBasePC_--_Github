@@ -1,7 +1,8 @@
 import random
 
 
-def run():
+def run(user):
+    VipAccess = user.VipAccess
     GNum = str(random.randint(1, 20))
     if VipAccess:
         GPstate = input("Learn correct answer(skips programm)[Y/N] -- ").upper()
