@@ -1,4 +1,5 @@
-def run():
+def run(user):
+    VipAccess = user.VipAccess
     User_reply = input("Do you like robots? -- ").upper()
     if User_reply == "YES":
         User_reply = "Y"
@@ -10,7 +11,6 @@ def run():
         print("Beep Boop!")
     elif User_reply == "N":
         print("Well, robots don't like you either")
-        global VipAccess
         if VipAccess:
             print("--Vip level access taken--")
         VipAccess = False

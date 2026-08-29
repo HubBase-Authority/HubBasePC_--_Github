@@ -27,7 +27,7 @@ for module in load_deps():
         install_prompt = input("Install it?[Y/N] -- ").upper()
         if install_prompt == "Y":
             try:
-                requirements_path = str(Path(__file__).resolve().parent.parent / "requirements.txt")
+                requirements_path = str((Path(__file__).resolve().parent.parent / "requirements.txt").resolve())
                 _ = subprocess.run([sys.executable, "-m", "pip", "install", "-r", requirements_path], check=True,
                                    capture_output=True)
                 print("Module installed.")
@@ -40,7 +40,8 @@ for module in load_deps():
     try:
         for item in module_obj.all_programs:
             if item.is_dir() and item.name != "__pycache__" and Path(item / "main.py").exists():
-                item.copy(programs_dir)
+                if item.name not in all_programsl:
+                    item.copy(programs_dir / item.name)
                 all_programsl.append(item.name)
     except AttributeError:
         print(f"AttributeError: module '{module}' has no attribute 'all_programs' therefore it is outdated")

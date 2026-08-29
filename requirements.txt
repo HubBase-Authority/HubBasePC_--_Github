@@ -1,2 +1,2 @@
-HubBasePE ~= 0.0.3.0
-HubBaseUtility ~= 0.0.0.1.0
+HubBasePE ~= 0.0.3.0, >= 0.0.3.0.0.0a2.post2
+HubBaseUtility ~= 0.0.0.1.0, >= 0.0.0.1.0.0.post1

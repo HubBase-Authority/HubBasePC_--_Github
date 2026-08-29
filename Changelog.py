@@ -99,8 +99,11 @@ def view_log():
         print(f"Version {searchfor} does not exist, or is not documented.")
 
 
-def find_version_info(D1, D2, D3, D4, D5):
-    searchfor = f"{D1}.{D2}.{D3}.{D4}{D5}"
+def find_version_info(D1 = None, D2 = None, D3 = None, D4 = None, D5 = None, *, fullstr: str | None = None) -> str:
+    if fullstr is None:
+        searchfor = f"{D1}.{D2}.{D3}.{D4}{D5}"
+    else:
+        searchfor = fullstr
     for version in versions:
         if version.str_to_list(version.version, reverse=True) == searchfor:
             return f"=== HubBase v{version} {version.params} === "

@@ -2,7 +2,8 @@ import random
 import tkinter as tkr
 
 
-def run():
+def run(user):
+    VipAccess = user.VipAccess
     def Setup_minesweeper():
         global gameOver, score, squaresLeft, minefield
         gameOver = False
@@ -44,7 +45,7 @@ def run():
             row = int(square.grid_info()["row"])
             column = int(square.grid_info()["column"])
             currentText = square.cget("text")
-            if gameOver == False:
+            if not gameOver:
                 if minefield[row][column] == 1:
                     gameOver = True
                     square.config(bg="red")
